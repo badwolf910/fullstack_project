@@ -22,14 +22,14 @@ class Feedback(db.Model):
     __tablename__ = 'feedback'
     id = db.Column(db.Integer, primary_key=True)
     customer = db.Column(db.String(200), unique=True)
-    dealer = db.Column(db.String(200))
-    rating = db.Column(db.Integer)
+    email = db.Column(db.String(200))
+    continent = db.Column(db.String(200))
     comments = db.Column(db.Text())
 
     def __init__(self, customer, continent, rating, comments):
         self.customer = customer
+        self.email = email
         self.continent = continent
-        self.rating = rating
         self.comments = comments
 
 
@@ -42,10 +42,10 @@ def index():
 def submit():
     if request.method == 'POST':
         customer = request.form['customer']
+        email = request.form['email']
         continent = request.form['continent']
-        rating = request.form['rating']
         comments = request.form['comments']
-        # print(customer, continent, rating, comments)
+        # print(customer, email, continent, comments)
         if customer == '' or continent == '':
             return render_template('index.html', message='Please enter required fields')
         if db.session.query(Feedback).filter(Feedback.customer == customer).count() == 0:
@@ -54,7 +54,7 @@ def submit():
             db.session.commit()
             send_mail(customer, continent, rating, comments)
             return render_template('success.html')
-        return render_template('index.html', message='You have already submitted feedback')
+        return render_template('index.html', message='You have already submitted your idea')
 
 
 if __name__ == '__main__':
