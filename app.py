@@ -26,7 +26,7 @@ class Feedback(db.Model):
     continent = db.Column(db.String(200))
     comments = db.Column(db.Text())
 
-    def __init__(self, customer, continent, email, comments):
+    def __init__(self, customer, email, continent, comments):
         self.customer = customer
         self.email = email
         self.continent = continent
@@ -36,6 +36,11 @@ class Feedback(db.Model):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/form')
+def form():
+    return render_template("form.html")
 
 
 @app.route('/submit', methods=['POST'])
@@ -49,10 +54,10 @@ def submit():
         if customer == '' or continent == '':
             return render_template('form.html', message='Please enter required fields')
         if db.session.query(Feedback).filter(Feedback.customer == customer).count() == 0:
-            data = Feedback(customer, continent, email, comments)
+            data = Feedback(customer, email, continent, comments)
             db.session.add(data)
             db.session.commit()
-            send_mail(customer, continent, email, comments)
+            send_mail(customer, email, continent, comments)
             return render_template('success.html')
         return render_template('form.html', message='You have already submitted your idea')
 
