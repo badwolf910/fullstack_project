@@ -9,9 +9,6 @@
   </head>
   <body>
     <div class="container">
-      {% if message %}
-      <p class="message">{{ message | safe }}</p>
-      {% endif %}
       <form action="/submit" method="POST">
         <div class="form-group">
           <h3>Adventurer's Name</h3>
