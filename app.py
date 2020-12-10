@@ -34,8 +34,8 @@ class Feedback(db.Model):
 
 
 @app.route('/')
-def form():
-    return render_template('form.html')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/submit', methods=['POST'])
