@@ -19,7 +19,7 @@ body {
 }
 
 h1 {
-  color: rgb(197, 193, 193);
+  color: rgb(197, 193, 193) !important;
   margin-top: 15px;
 }
 
@@ -36,12 +36,6 @@ img {
   padding: 5px;
   border: #ccc dotted 2px;
   margin-top: 2rem;
-}
-
-.logo {
-  width: 300px;
-  display: block;
-  margin: auto;
 }
 
 .form-group {
