@@ -59,7 +59,7 @@ def submit():
             db.session.commit()
 
             return render_template('index.html')
-        return render_template('form.html', message='You have already submitted your idea')
+        return render_template('success.html')
 
 
 if __name__ == '__main__':
