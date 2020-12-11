@@ -58,7 +58,7 @@ def submit():
             db.session.add(data)
             db.session.commit()
             send_mail(customer, email, continent, comments)
-            return render_template('success.html')
+            return render_template('index.html')
         return render_template('form.html', message='You have already submitted your idea')
 
 
