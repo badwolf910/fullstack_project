@@ -43,8 +43,8 @@ def form():
     return render_template("form.html")
 
 
-@app.route('/form', methods=['POST'])
-def form():
+@app.route('/submit', methods=['POST'])
+def submit():
     if request.method == 'POST':
         customer = request.form['customer']
         email = request.form['email']
