@@ -12,7 +12,7 @@ def send_mail(customer, email, continent, comments):
     sender_email = 'dns22668@gmail.com'
     receiver_email = '78a2b46612-6b1214@inbox.mailtrap.io'
     msg = MIMEText(message, 'html')
-    msg['Subject'] = 'Lexus Feedback'
+    msg['Subject'] = 'Feedback'
     msg['From'] = sender_email
     msg['To'] = receiver_email
 
