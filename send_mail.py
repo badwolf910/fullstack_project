@@ -1,12 +1,15 @@
 import smtplib
+import os
 from email.mime.text import MIMEText
 
 
 def send_mail(customer, email, continent, comments):
-    port = 2525
-    smtp_server = 'smtp.mailtrap.io'
-    login = 'c3d00f64a937eb'
-    password = 'c3d00f64a937eb'
+    port = int(os.environ.get('SMTP_PORT', '2525'))
+    smtp_server = os.environ.get('SMTP_SERVER', 'smtp.mailtrap.io')
+    login = os.environ.get('SMTP_LOGIN')
+    password = os.environ.get('SMTP_PASSWORD')
+    if not login or not password:
+        raise RuntimeError('SMTP_LOGIN and SMTP_PASSWORD must be configured')
     message = f"<h3>New Feedback Submission</h3><ul><li>Customer: {customer}</li><li>continent: {continent}</li><li>Comments: {comments}</li></ul>"
 
     sender_email = 'dns22668@gmail.com'
